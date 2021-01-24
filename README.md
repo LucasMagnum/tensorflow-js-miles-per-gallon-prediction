@@ -1,6 +1,6 @@
 # Tensorflow.js - Tutorial
 
-Tensorflow.js tutorial, miles per galon prediction.
+Tensorflow.js tutorial, miles per gallon prediction.
 
 https://codelabs.developers.google.com/codelabs/tfjs-training-regression/index.html
 
