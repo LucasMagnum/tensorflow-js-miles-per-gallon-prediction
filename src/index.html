@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TensorFlow.js Tutorial</title>
+
+        <!-- Import TensorFlow.js -->
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+        <!-- Import tfjs-vis -->
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.0.2/dist/tfjs-vis.umd.min.js"></script>
+
+        <!-- Import the main script file -->
+        <script src="script.js"></script>
+
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+        <style>
+            body {
+                font-family: 'Open Sans', sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>
+            <a src="https://codelabs.developers.google.com/codelabs/tfjs-training-regression/index.html">
+            TensorFlow.js Tutorial
+            </a>
+        </h1>
+
+        <h4>Javascript variables</h4>
+        <ul>
+            <li><strong>tf</strong>: Reference to the TensorFlow.js library</li>
+            <li><strong>tfvis</strong>: Reference to the tfjs-vis library</li>
+        </ul>
+
+        <h4>tfjs-vis</h4>
+        <p>
+            tfjs-vis is a small library for in browser visualization intended for use with TensorFlow.js.
+            Its main features are: <br>
+            <ul>
+                <li>A set of visualizations useful for visualizing model behaviour</li>
+                <li>A set of high level functions for visualizing objects specific to TensorFlow.js</li>
+                <li>A way to organize visualizations (the visor) of model behaviour that won't interfere with your web application</li>
+            </ul>
+
+            The library also aims to be flexible and make it easy for you to incorporate custom visualizations using tools of your choosing, such as d3, Chart.js or plotly.js.
+        </p>
+
+        <h2>Model Architecture</h2>
+
+        <p>
+            Model architecture is just a fancy way of saying "which functions will the model run when it is executing",
+            or alternatively "what algorithm will our model use to compute its answers".
+            ML models are algorithms that take an input and produce an output.
+            When using neural networks, the algorithm is a set of layers of neurons with ‘weights' (numbers) governing their output.
+            The training process learns the ideal values for those weights.
+        </p>
+
+        <h2>Training</h2>
+
+        <h4>Shuffle the data</h4>
+        <p>
+            Shuffling is important because typically during training the dataset is broken up into smaller subsets,
+            called batches, that the model is trained on.
+            Shuffling helps each batch have a variety of data from across the data distribution
+        </p>
+        <i>You should always shuffle your data before handing it to the training algorithms in TensorFlow.js</i>
+
+        <h4>Normalize the data</h4>
+        <p>
+            We normalize the data. Here we normalize the data into the numerical range 0-1 using min-max scaling.
+            Normalization is important because the internals of many machine learning models you will build with
+            tensorflow.js are designed to work with numbers that are not too big.
+            Common ranges to normalize data to include 0 to 1 or -1 to 1.
+            You will have more success training your models if you get into the habit of normalizing
+            your data to some reasonable range.
+        </p>
+        <i>
+            You should always consider normalizing your data before training.
+            Some datasets can be learned without normalization, but normalizing your data will often eliminate
+            a whole class of problems that would prevent effective learning.
+            You can normalize your data before turning it into tensors.
+            We do it afterwards because we can take advantage of vectorization in TensorFlow.js
+            to do the min-max scaling operations without writing any explicit for loops.
+        </i>
+
+        <h2>Takeaways</h2>
+        <p>
+            Formulate your task:
+            <ul>
+                <li>Is it a regression problem or a classification one?</li>
+                <li>Can this be done with supervised learning or unsupervised learning?</li>
+                <li>What is the shape of the input data? What should the output data look like?</li>
+            </ul>
+
+            Prepare your data:
+            <ul>
+                <li>Clean your data and manually inspect it for patterns when possible</li>
+                <li>Shuffle your data before using it for training</li>
+                <li>Normalize your data into a reasonable range for the neural network. Usually 0-1 or -1-1 are good ranges for numerical data.</li>
+                <li>Convert your data into tensors</li>
+            </ul>
+
+            Build and run your model:
+            <ul>
+                <li>Define your model using tf.sequential or tf.model then add layers to it using tf.layers.*</li>
+                <li>Choose an optimizer ( adam is usually a good one), and parameters like batch size and number of epochs.</li>
+                <li>Choose an appropriate loss function for your problem, and an accuracy metric to help your evaluate progress. meanSquaredError is a common loss function for regression problems.</li>
+                <li>Monitor training to see whether the loss is going down</li>
+            </ul>
+
+            Evaluate your model
+            <ul>
+                <li>Choose an evaluation metric for your model that you can monitor while training. Once it's trained, try making some test predictions to get a sense of prediction quality.</li>
+            </ul>
+        </p>
+    </body>
+</html>
